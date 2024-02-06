@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canvas Resize</title>
+  <script src="script.js" defer></script>
+  <style>
+    body {
+      background-color: #222222;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+    }
+
+    .animation_control {
+      width: max-content;
+      margin: 0 auto;
+      padding: 10px 20px;
+      border: 1px solid black;
+    }
+
+    .animation_control>button.hidden {
+      display: none;
+    }
+
+    .container h1,
+    .container p {
+      margin: 5px 0;
+      max-width: 400px;
+    }
+
+    .container {
+      width: max-content;
+      margin: 0 auto;
+    }
+
+    .space {
+      display: inline-flex;
+      max-width: 400px;
+      margin: 10px;
+      flex-direction: column;
+    }
+
+    canvas {
+      border: 1px solid black;
+      transform: scale(1, -1);
+      user-select: none;
+    }
+
+    aside#credits {
+      text-align: right;
+    }
+
+    aside#robot_config {
+      display: flex;
+      padding: 20px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-style: italic;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <h1 align="center" style="margin: 10vh 0">Visualizing Configuration Spaces and Workspaces</h1> -->
+  <div class="animation_control">
+    Animation
+    <button id="play">Play ⏵</button>
+    <button id="stop" class="hidden">Stop ⏹</button>
+  </div>
+  <div class="container">
+    <div class="space">
+      <h2>Robot Space</h2>
+      <canvas id="robot_space"></canvas>
+      <div class="obstacle_options">
+        Vertices: <input type="number" id="obstacle_vertices" value="3" min="3">
+        <button id="add_obstacle">Add obstacle</button>
+        <button id="clear_obstacles">Clear all obstacles</button>
+      </div>
+      <p>*Click and drag the joints to move the robot</p>
+    </div>
+    <div class="space">
+      <h2>Configuration Space</h2>
+      <canvas id="configuration_space"></canvas>
+      <b><i>
+          <p>x-axis: θ<sub>1</sub></p>
+          <p>y-axis: θ<sub>2</sub></p>
+        </i></b>
+      <p>*Click and drag over the area to move the robot to the respective pose in the robot space</p>
+    </div>
+    <div class="space">
+      <h2>Workspace</h2>
+      <canvas id="workspace"></canvas>
+      <p>*Click and drag over the area to use inverse kinematics to calculate the robot pose for any point in the
+        workspace</p>
+      <p>*Switch between using left and right mouse buttons to see different possible robot positions for any point in
+        the
+        workspace</p>
+      <p>*Green lines depict the workspace bounds</p>
+    </div>
+
+    <br />
+
+    <aside id="robot_config">
+      <img src="assets/configuration_definition.png" alt="Robot configuration" title="Robot configuration">
+      <caption>Robot configuration</caption>
+    </aside>
+    <aside>
+      <h2>Key Learnings</h2>
+      <ul>
+        <li>Creating browser animations using Javascript</li>
+        <li>Collision detection between polygons</li>
+        <li>Application of tranformation matrices</li>
+        <li>Finding inverse kinematic solutions of a two-arm manipulator</li>
+        <li>Better understanding of configuration spaces, workspaces, and obstacle representations in both</li>
+      </ul>
+    </aside>
+    <aside id="credits">
+      <i>Created by Pratyush Kumar (2001ME51) <br />
+        Submitted to Dr. Atul Thakur <br />
+        ME510 - Robot Motion Planning <br />
+        IIT Patna <br />
+        Jan 2024</i>
+    </aside>
+  </div>
+</body>
+
+</html>
